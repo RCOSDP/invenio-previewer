@@ -119,6 +119,8 @@ setup(
             '= invenio_previewer.bundles:prism_js',
             'previewer_prism_css '
             '= invenio_previewer.bundles:prism_css',
+            'previewer_dwv_js'
+            '= invenio_previewer.bundles:dwv_js',
         ],
         'invenio_previewer.previewers': [
             'csv_dthreejs = invenio_previewer.extensions.csv_dthreejs',
@@ -130,6 +132,7 @@ setup(
             'zip = invenio_previewer.extensions.zip',
             'ipynb = invenio_previewer.extensions.ipynb',
             'default = invenio_previewer.extensions.default',
+            'dwv = invenio_previewer.extensions.dwv',
         ],
     },
     extras_require=extras_require,

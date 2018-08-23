@@ -121,3 +121,16 @@ prism_css = Bundle(
     output='gen/prism.%(version)s.css'
 )
 """CSS bundle for prism.js syntax highlighter."""
+
+
+dwv_js = Bundle(
+    NpmBundle(
+        npm={
+            "dwv": "~0.23.6",
+            "jquery": "~1.9.1",
+        }
+    ),
+    "node_modules/dwv/dist/dwv.min.js",
+    output='gen/dwv.%(version)s.js',
+)
+"""JavaScript bundle for dwv."""
