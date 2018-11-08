@@ -134,3 +134,15 @@ dwv_js = Bundle(
     output='gen/dwv.%(version)s.js',
 )
 """JavaScript bundle for dwv."""
+
+jsc3d_js = Bundle(
+    NpmBundle(
+        npm={
+            "jsc3d": "~0.1.8",
+            "jquery": "~1.9.1",
+        }
+    ),
+    "node_modules/jsc3d/assets/jsc3d.js",
+    output='gen/jsc3d.%(version)s.js',
+)
+"""JavaScript bundle for jsc3d."""

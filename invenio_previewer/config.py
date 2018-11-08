@@ -52,6 +52,7 @@ PREVIEWER_PREFERENCE = [
     'ipynb',
     'zip',
     'dwv',
+    'jsc3d',
 ]
 """Decides which previewers are available and their priority."""
 
