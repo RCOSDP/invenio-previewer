@@ -28,8 +28,8 @@ from __future__ import absolute_import, print_function
 
 import re
 import subprocess
-from time import sleep
 from os.path import basename, splitext
+from time import sleep
 
 from flask import current_app, url_for
 
@@ -107,8 +107,8 @@ def convert_to(folder, source, timeout=30):
                                  stderr=subprocess.PIPE, timeout=timeout)
         filename = re.search('-> (.*?) using filter', process.stdout.decode())
         if not filename:
-            current_app.logger.debug('retry convert to pdf :' +
-                                     str(process_count))
+            current_app.logger.debug('retry convert to pdf :'
+                                     + str(process_count))
             sleep(1)
         process_count = process_count + 1
 
