@@ -64,3 +64,6 @@ PREVIEWER_BASE_JS_BUNDLES = ['invenio_theme_js']
 
 PREVIEWER_RECORD_FILE_FACOTRY = None
 """Factory for extracting files from records."""
+
+PREVIEWER_CONVERT_PDF_RETRY_COUNT = 5
+"""Retry convert office file to pdf count."""
