@@ -1,17 +1,28 @@
 # -*- coding: utf-8 -*-
 #
 # This file is part of Invenio.
-# Copyright (C) 2015-2019 CERN.
+# Copyright (C) 2015, 2016 CERN.
 #
-# Invenio is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# Invenio is free software; you can redistribute it
+# and/or modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of the
+# License, or (at your option) any later version.
+#
+# Invenio is distributed in the hope that it will be
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Invenio; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+# MA 02111-1307, USA.
+#
+# In applying this license, CERN does not
+# waive the privileges and immunities granted to it by virtue of its status
+# as an Intergovernmental Organization or submit itself to any jurisdiction.
 
-"""Previewer bundles.
-
-.. deprecated:: 1.0.0
-    AMD/RequireJS based bundles have been deprecated in Invenio v3.0 and will
-    be removed.
-"""
+"""Previewer bundles."""
 
 from __future__ import unicode_literals
 
@@ -22,7 +33,7 @@ previewer_base_css = Bundle(
     "node_modules/bootstrap/dist/css/bootstrap.css",
     NpmBundle(
         npm={
-            "bootstrap-sass": "~3.4.0",
+            "bootstrap": "~3.3.6",
             "font-awesome": "~4.5.0",
         }
     ),
@@ -34,24 +45,21 @@ previewer_base_css = Bundle(
 previewer_base_js = Bundle(
     NpmBundle(
         npm={
-            "jquery": "~3.3.0",
-            "bootstrap": "~3.4.0",
+            "bootstrap": "~3.3.6",
+            "jquery": "~1.9.1",
         }
     ),
-    "node_modules/jquery/dist/jquery.js",
     "node_modules/bootstrap/dist/js/bootstrap.js",
     output='gen/previewer-base.%(version)s.js',
 )
 """JavaScript bundle for basic tools."""
 
 csv_previewer_js = Bundle(
-    "node_modules/requirejs/require.js",
     NpmBundle(
         npm={
-            "requirejs": "~2.3.6",
             "flightjs": "~1.5.1",
-            "d3": "~3.5.17",
-            "jquery": "~3.3.0"
+            "d3": "~3.5.12",
+            "jquery": "~1.9.1"
         }
     ),
     Bundle(
@@ -71,7 +79,7 @@ pdfjs_css = Bundle(
 pdfjs_js = Bundle(
     NpmBundle(
         npm={
-            "pdfjs-dist": "^1.4.192",
+            "pdfjs-dist": "1.4.192",
         }
     ),
     "node_modules/pdfjs-dist/web/compatibility.js",
@@ -92,7 +100,7 @@ fullscreen_js = Bundle(
 prism_js = Bundle(
     NpmBundle(
         npm={
-            "prismjs": "^1.15.0",
+            "prismjs": "1.4.1",
         },
     ),
     "node_modules/prismjs/prism.js",
@@ -105,7 +113,7 @@ prism_js = Bundle(
 prism_css = Bundle(
     NpmBundle(
         npm={
-            "prismjs": "^1.15.0",
+            "prismjs": "1.4.1",
         },
     ),
     "node_modules/prismjs/themes/prism.css",
