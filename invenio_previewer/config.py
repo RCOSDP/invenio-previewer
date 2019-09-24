@@ -11,6 +11,9 @@
 PREVIEWER_CSV_VALIDATION_BYTES = 1024
 """Number of bytes read by CSV previewer to validate the file."""
 
+PREVIEWER_CSV_SNIFFER_ALLOWED_DELIMITERS = None
+"""Allowed delimiter characters passed to the ``csv.Sniffer.sniff`` method."""
+
 PREVIEWER_CHARDET_BYTES = 1024
 """Number of bytes to read for character encoding detection by `cchardet`."""
 
@@ -55,41 +58,3 @@ PREVIEWER_CONVERT_PDF_RETRY_COUNT = 5
 
 PREVIEWER_ASSETS_USE_WEBPACK = True
 """If false, flask assets will be used for assets build."""
-
-PREVIEWER_ALLOWED_TAGS = [
-    'a',
-    'abbr',
-    'acronym',
-    'b',
-    'blockquote',
-    'br',
-    'code',
-    'div',
-    'em',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'i',
-    'li',
-    'ol',
-    'p',
-    'pre',
-    'span',
-    'strike',
-    'strong',
-    'sub',
-    'sup',
-    'u',
-    'ul',
-]
-"""List of allowed tags used to sanitize HTML output for previewers."""
-
-PREVIEWER_ALLOWED_ATTRS = {
-    '*': ['class'],
-    'a': ['href', 'title', 'name', 'class', 'rel'],
-    'abbr': ['title'],
-    'acronym': ['title'],
-}
-"""List of allowed attributes used to sanitize HTML output for previewers."""

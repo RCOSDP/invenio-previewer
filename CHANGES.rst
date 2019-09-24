@@ -10,6 +10,16 @@
 Changes
 =======
 
+Version 1.0.1 (Release 2019-08-02)
+----------------------------------
+
+- Removes html sanitization config
+
+Version 1.0.0 (release 2019-07-29)
+----------------------------------
+
+- Initial production release.
+
 Version 1.0.0a12 (release 2019-07-11)
 -------------------------------------
 

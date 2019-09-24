@@ -22,13 +22,15 @@ from flask import Flask
 from flask_babelex import Babel
 from flask_webpackext import current_webpack
 from invenio_assets import InvenioAssets
+from invenio_config import InvenioConfigDefault
 from invenio_db import InvenioDB
 from invenio_db import db as db_
 from invenio_files_rest import InvenioFilesREST
-from invenio_files_rest.models import Bucket, Location, ObjectVersion
+from invenio_files_rest.models import Location, ObjectVersion
+from invenio_formatter import InvenioFormatter
 from invenio_pidstore.providers.recordid import RecordIdProvider
 from invenio_records import InvenioRecords
-from invenio_records_files.api import Record, RecordsBuckets
+from invenio_records_files.api import Record
 from invenio_records_ui import InvenioRecordsUI
 from invenio_records_ui.views import create_blueprint_from_app
 from six import BytesIO
@@ -76,6 +78,8 @@ def app():
     InvenioAssets(app_)
     InvenioDB(app_)
     InvenioRecords(app_)
+    InvenioConfigDefault(app_)
+    InvenioFormatter(app_)
     InvenioPreviewer(app_)._state
     InvenioRecordsUI(app_)
     app_.register_blueprint(create_blueprint_from_app(app_))
@@ -127,23 +131,7 @@ def location(db):
 
 
 @pytest.fixture()
-def bucket(db, location):
-    """File system location."""
-    bucket = Bucket.create()
-    db.session.commit()
-    return bucket
-
-
-@pytest.fixture()
-def testfile(db, bucket):
-    """File system location."""
-    obj = ObjectVersion.create(bucket, 'testfile', stream=BytesIO(b'atest'))
-    db.session.commit()
-    return obj
-
-
-@pytest.fixture()
-def record(db):
+def record(db, location):
     """Record fixture."""
     rec_uuid = uuid.uuid4()
     provider = RecordIdProvider.create(
@@ -157,10 +145,10 @@ def record(db):
 
 
 @pytest.fixture()
-def record_with_file(db, record, testfile):
+def record_with_file(db, record, location):
     """Record with a test file."""
-    rb = RecordsBuckets(record_id=record.id, bucket_id=testfile.bucket_id)
-    db.session.add(rb)
+    testfile = ObjectVersion.create(record.bucket, 'testfile',
+                                    stream=BytesIO(b'atest'))
     record.update(dict(
         _files=[dict(
             bucket=str(testfile.bucket_id),
@@ -172,7 +160,7 @@ def record_with_file(db, record, testfile):
     ))
     record.commit()
     db.session.commit()
-    return record
+    return record, testfile
 
 
 @pytest.fixture()

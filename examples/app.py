@@ -34,14 +34,17 @@ from flask_babelex import Babel
 from invenio_access import InvenioAccess
 from invenio_accounts import InvenioAccounts
 from invenio_assets import InvenioAssets
+from invenio_config import InvenioConfigDefault
 from invenio_db import InvenioDB, db
 from invenio_files_rest import InvenioFilesREST
 from invenio_files_rest.models import Bucket, Location
+from invenio_formatter import InvenioFormatter
 from invenio_i18n import InvenioI18N
 from invenio_pidstore.providers.recordid import RecordIdProvider
 from invenio_records import InvenioRecords
 from invenio_records_files.api import Record
 from invenio_records_files.models import RecordsBuckets
+from invenio_records_rest.utils import allow_all
 from invenio_records_ui import InvenioRecordsUI
 from invenio_records_ui.views import create_blueprint_from_app
 
@@ -50,6 +53,7 @@ from invenio_previewer import InvenioPreviewer
 # Create Flask application
 app = Flask(__name__)
 app.config.update(
+    FILES_REST_PERMISSION_FACTORY=allow_all,
     SECRET_KEY='CHANGEME',
     SQLALCHEMY_DATABASE_URI=os.environ.get(
         'SQLALCHEMY_DATABASE_URI', 'sqlite:///instance/test.db'),
@@ -84,6 +88,8 @@ InvenioAssets(app)
 InvenioRecords(app)
 InvenioFilesREST(app)
 InvenioPreviewer(app)
+InvenioConfigDefault(app)
+InvenioFormatter(app)
 InvenioRecordsUI(app)
 app.register_blueprint(create_blueprint_from_app(app))
 
