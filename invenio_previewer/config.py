@@ -53,5 +53,5 @@ PREVIEWER_BASE_JS_BUNDLES = ['previewer_theme.js']
 PREVIEWER_RECORD_FILE_FACOTRY = None
 """Factory for extracting files from records."""
 
-PREVIEWER_ASSETS_USE_WEBPACK = True
+PREVIEWER_ASSETS_USE_WEBPACK = False
 """If false, flask assets will be used for assets build."""
