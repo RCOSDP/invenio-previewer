@@ -52,7 +52,7 @@ PREVIEWER_RECORD_FILE_FACOTRY = None
 
 PREVIEWER_CONVERT_PDF_RETRY_COUNT = 5
 """Retry convert office file to pdf count."""
-PREVIEWER_ASSETS_USE_WEBPACK = True
+PREVIEWER_ASSETS_USE_WEBPACK = False
 """If false, flask assets will be used for assets build."""
 
 PREVIEWER_ALLOWED_TAGS = [
